@@ -2,7 +2,7 @@
 title: Cloud Robot blog
 SEOTitle: cloud robot
 header-img: img/tag-bg.jpg
-email: dingxinmin.bob@gmail.com
+email: 
 description: "About Robot"
 keyword: "Robot"
 url: "https://cloud-robot.github.io"              # your host, for absolute URL
@@ -13,7 +13,7 @@ baseurl: ""                             # for example, '/blog' if your blog host
 # SNS settings
 RSS: false
 
-zhihu_username:     xinmin
+zhihu_username:     
 github_username:    23garyd
 # linkedin_username:  firstname-lastname-idxxxx
 
@@ -58,8 +58,8 @@ netease_comment: false
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id: 'UA-118970708-1'            # Format: UA-xxxxxx-xx
-ga_domain: github.com/bobd988
+ga_track_id:            # Format: UA-xxxxxx-xx
+ga_domain: 
 
 
 
