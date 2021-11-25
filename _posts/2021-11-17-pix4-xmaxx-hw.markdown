@@ -2,8 +2,8 @@
 layout:     post
 title:      "Pixhawk 4 rover hardware"
 subtitle:   "Xmaxx assembly with Pixhawk 4 and Xavier"
-date:       2021-11-17 12:00:00
-author:     "bobd988"
+date:       2021-11-21 15:00:00
+author:     "gary ding"
 header-img: "img/in-post/post-eleme-pwa/eleme-at-io.jpg"
 header-mask: 0.3
 catalog:    true
@@ -13,27 +13,28 @@ tags:
 ---
 
 
-> Steps to build Pixhawk 4 rover based on Traxxas xmaxx model with Jetson Xavier as Companion computer<br><br>
+> Steps to build PIXHAWK 4 rover based on a Traxxas X-Maxx RC truck with a Jetson Xavier as a Companion computer<br><br>
 > 
 
 ## Goals
-- Reference platform for multi-camera verification
-- Reference platform for data driven verification 
-- Reference platform for ML-Ops in real world
-- Reference platform for creating training data   
+To create a reference platform for the following:
+- Multi-camera verification
+- Data driven verification 
+- Real world ML-Ops
+- A source for training data   
 
 ## Parts List 
 
-- Traxxas xmaxx Car platform 
+- Traxxas X-Maxx RC Monster Truck
 - SparkFun FTDI Basic Breakout - 3.3V cable
-- Trxxas 6700 Battery and 12A EZ Plus charger (6700)  
+- Traxxas 6700 Battery and 12A EZ Plus charger (6700)  
 - Nvidia Jetson Xavier development board
 - 25000 PC portable battery with 19V output 
 - Delkin Devices Fat Gecko mini suction camera mount for 4 camera kit
-- 55 mm spacers /standoffs
-- 60 mm spacers /standoffs
-- 35 mm spacers /standoffs
-- Acrylic Plexiglas Sheet 1/4" x 12" x 24" 
+- 55 mm spacers/ standoffs
+- 60 mm spacers/ standoffs
+- 35 mm spacers/ standoffs
+- Acrylic Plexiglass Sheet 1/4" x 12" x 24" 
 - M3 screws x 10 mm
 - M3 screws x 20 mm
 - PIXHAWK 4 kit
@@ -43,41 +44,40 @@ tags:
 - Taranis X7 and X8R
 
 
-### 1. Disassembly car 
-
-xmaxx is a affordable platform to carry heavy equipment.   
+### 1. Modifying the Truck
+The Traxxas X-Maxx is an affordable platform to carry heavy equipment, suitable for containing the other elements of the rover.   
 ![](/img/in-post/xmaxx.jpg)
 
-We will install two layers of Plexiglas sheet to hold the pix4, xavier computer and camera kits.
+Two layers of Plexiglass are installed to hold the PIXHAWK 4, Xavier computer, and camera setup.
 
-The xmaxx ESC will be kept but the actual control wire will unplugged from original 2.4G receiver box and then connect to pix4 power board IO port pint 1 and 3.
+The X-Maxx's onboard ESC is kept but the actual control wire is rerouted from the original 2.4G receiver box to pins 1 and 3 on the PIXHAWK 4 power board IO port.
 
 
-### 2. Build bottom layer
+### 2. Building the bottom layer
 
-Need standoffs to hold the PVC board. The holes will reuse existing one. However the front two holes will need to give thread.
+Standoffs are used to hold the PVC board to existing holes on the X-Maxx chassis. However, two holes in the front need to be newly created and threaded.
 
 ![](/img/in-post/xmaxx-body-drill.jpg)
 
 
 
-### 3. Build top layer
+### 3. Building the top layer
 
-Create second platform to hold the camera set and also protect pix4 and computer. Here is how it looks like after finished
+The second platform is created to hold the camera setup and also to protect the PIXHAWK 4 and computer. The image below depicts the finished assembly.
 
 ![](/img/in-post/xmaxx-body.jpg)
 
-### 4. Wiring motor power
+### 4. Wiring the motors
 
-This is the standard wire diagram for pixhawk 4 to connect accessories.  
+This is the standard wire diagram for accessories to be connected to the PIXHAWK 4.  
 
 ![](/img/in-post/pixhawk4.jpg)
 
-The standard rover wire diagram is like this
+A standard wiring diagram for this rover is as follows.
 
 ![](/img/in-post/pix4-wire.png)
 
-As xmaxx has two battery combined to provide high voltage. The wires needs to be designed to match the PM07 power board.
+Since the X-Maxx requires a high voltage that is provided by  two batteries, the wires needs to be redesigned to accomodate the PM07 power board.
 
 ![](/img/in-post/xmaxx-wire.png)
 
@@ -85,34 +85,33 @@ The PM07 board to connect ESC actual wiring is like this. The connector is trx f
 
 ![](/img/in-post/xmaxx-pm07.jpg)
 
-The PM07 board to connect battery wiring is like this. The connector is trx male connector
+The wiring that connects the PM07 board to the battery is as follows. The connector shown in the image is a trx male connector.
 
 ![](/img/in-post/xmaxx-battery.jpg)
 
 
-after completion the xmaxx is like this
+The X-Maxx setup after completion:
 
 ![](/img/in-post/xmaxx-complete.jpg)
 
-### 5. Wiring Xavier power
+### 5. Wiring the Xavier 
 
-The battery for Xavier is Krionia 25000mAH battery which can output 19V voltage.
-The power cable connect the output of battery directly to Xavier.
+The battery used for the Xavier is a Krionia 25000mAH battery which can output a voltage of 19V.
+A power cable connects the electrical output of the battery directly to the Xavier.
 
-### 6. Wiring ECS and Steering cable
+### 6. Wiring the ECS and steering cables
 
-The xmaxx ESC and steering cables can be found by open the carrier box. 
+The X-Maxx's ESC and steering cables can be found inside the carrier box. 
 
 ![](/img/in-post/xmaxx-esc-cable.jpg)
 
-The left side cable is the ESC and right side cable is the steering cable. We unplug these two cables from receiver and will connect them to PM07 GPIO pin 1 and 3. 
+The cable on the left is the ESC and the cable on the right is the steering cable. These two cables are rerouted from the receiver to GPIO pins 1 and 3 on the PM07. 
 
-### 7. Xavier connect to pix4 
+### 7. Connecting the Xavier to the PIXHAWK 4 
 
-In order to make Xavier connect with PIX4 the UART is needed. From pix4 normally telem2 is used for this purpose.  A  cable is needed to be created for this purpose.
+In order connect the  Xavier with the PIXHAWK4, a UART is needed. A telem2 is typically used for this purpose.  Therefore, an additional cable is used.
 
-
- From Xavier side the ports are:
+On the Xavier, the ports are as follows:
 
 Jetson Xavier GPIO Pin 6 (GND) → Cable GND (Black Wire)
 Jetson Xavier GPIO Pin 8 (UART1_TX) → Cable RXD (White Wire)
