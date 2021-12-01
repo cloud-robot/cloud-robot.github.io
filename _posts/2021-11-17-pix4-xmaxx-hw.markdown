@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Pixhawk 4 rover hardware"
-subtitle:   "Xmaxx assembly with Pixhawk 4 and Xavier"
+subtitle:   "Hardware setup for Xmaxx with Pixhawk 4 and Xavier"
 date:       2021-11-21 15:00:00
 author:     "gary ding"
 header-img: "img/in-post/post-eleme-pwa/eleme-at-io.jpg"
