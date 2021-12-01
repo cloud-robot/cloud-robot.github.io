@@ -1,0 +1,9 @@
+I"I<blockquote>
+  <p>ERDOS is a platform for developing self-driving cars and robotics applications.</p>
+</blockquote>
+
+<h2 id="erdos">ERDOS</h2>
+
+<p>The system is built using techniques from streaming dataflow and applications are modeled as directed graphs, in which data flows through streams and is processed by operators.</p>
+
+:ET

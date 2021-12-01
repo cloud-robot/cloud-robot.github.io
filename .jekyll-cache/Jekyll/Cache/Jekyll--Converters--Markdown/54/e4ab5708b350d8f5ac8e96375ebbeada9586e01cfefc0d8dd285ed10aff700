@@ -1,0 +1,108 @@
+I"~<blockquote>
+  <p>Steps to build PIXHAWK 4 rover based on a Traxxas X-Maxx RC truck with a Jetson Xavier as a Companion computer<br /><br /></p>
+
+</blockquote>
+
+<h2 id="goals">Goals</h2>
+<p>To create a reference platform for the following:</p>
+<ul>
+  <li>Multi-camera verification</li>
+  <li>Data driven verification</li>
+  <li>Real world ML-Ops</li>
+  <li>A source for training data</li>
+</ul>
+
+<h2 id="parts-list">Parts List</h2>
+
+<ul>
+  <li>Traxxas X-Maxx RC Monster Truck</li>
+  <li>SparkFun FTDI Basic Breakout - 3.3V cable</li>
+  <li>Traxxas 6700 Battery and 12A EZ Plus charger (6700)</li>
+  <li>Nvidia Jetson Xavier development board</li>
+  <li>25000 PC portable battery with 19V output</li>
+  <li>Delkin Devices Fat Gecko mini suction camera mount for 4 camera kit</li>
+  <li>55 mm spacers/ standoffs</li>
+  <li>60 mm spacers/ standoffs</li>
+  <li>35 mm spacers/ standoffs</li>
+  <li>Acrylic Plexiglass Sheet 1/4” x 12” x 24”</li>
+  <li>M3 screws x 10 mm</li>
+  <li>M3 screws x 20 mm</li>
+  <li>PIXHAWK 4 kit</li>
+  <li>X8R receiver</li>
+  <li>Taranis QX7</li>
+  <li>e-CAM20_CUXVR - Four Synchronized 4K Cameras</li>
+  <li>Taranis X7 and X8R</li>
+</ul>
+
+<h3 id="1-modifying-the-truck">1. Modifying the Truck</h3>
+<p>The Traxxas X-Maxx is an affordable platform to carry heavy equipment, suitable for containing the other elements of the rover. <br />
+<img src="/img/in-post/xmaxx.jpg" alt="" /></p>
+
+<p>Two layers of Plexiglass are installed to hold the PIXHAWK 4, Xavier computer, and camera setup.</p>
+
+<p>The X-Maxx’s onboard ESC is kept but the actual control wire is rerouted from the original 2.4G receiver box to pins 1 and 3 on the PIXHAWK 4 power board IO port.</p>
+
+<h3 id="2-building-the-bottom-layer">2. Building the bottom layer</h3>
+
+<p>Standoffs are used to hold the PVC board to existing holes on the X-Maxx chassis. However, two holes in the front need to be newly created and threaded.</p>
+
+<p><img src="/img/in-post/xmaxx-body-drill.jpg" alt="" /></p>
+
+<h3 id="3-building-the-top-layer">3. Building the top layer</h3>
+
+<p>The second platform is created to hold the camera setup and also to protect the PIXHAWK 4 and computer. The image below depicts the finished assembly.</p>
+
+<p><img src="/img/in-post/xmaxx-body.jpg" alt="" /></p>
+
+<h3 id="4-wiring-the-motors">4. Wiring the motors</h3>
+
+<p>This is the standard wire diagram for accessories to be connected to the PIXHAWK 4.</p>
+
+<p><img src="/img/in-post/pixhawk4.jpg" alt="" /></p>
+
+<p>A standard wiring diagram for this rover is as follows.</p>
+
+<p><img src="/img/in-post/pix4-wire.png" alt="" /></p>
+
+<p>Since the X-Maxx requires a high voltage that is provided by  two batteries, the wires needs to be redesigned to accomodate the PM07 power board.</p>
+
+<p><img src="/img/in-post/xmaxx-wire.png" alt="" /></p>
+
+<p>The PM07 board to connect ESC actual wiring is like this. The connector is trx female connector.</p>
+
+<p><img src="/img/in-post/xmaxx-pm07.jpg" alt="" /></p>
+
+<p>The wiring that connects the PM07 board to the battery is as follows. The connector shown in the image is a trx male connector.</p>
+
+<p><img src="/img/in-post/xmaxx-battery.jpg" alt="" /></p>
+
+<p>The X-Maxx setup after completion:</p>
+
+<p><img src="/img/in-post/xmaxx-complete.jpg" alt="" /></p>
+
+<h3 id="5-wiring-the-xavier">5. Wiring the Xavier</h3>
+
+<p>The battery used for the Xavier is a Krionia 25000mAH battery which can output a voltage of 19V.
+A power cable connects the electrical output of the battery directly to the Xavier.</p>
+
+<h3 id="6-wiring-the-ecs-and-steering-cables">6. Wiring the ECS and steering cables</h3>
+
+<p>The X-Maxx’s ESC and steering cables can be found inside the carrier box.</p>
+
+<p><img src="/img/in-post/xmaxx-esc-cable.jpg" alt="" /></p>
+
+<p>The cable on the left is the ESC and the cable on the right is the steering cable. These two cables are rerouted from the receiver to GPIO pins 1 and 3 on the PM07.</p>
+
+<h3 id="7-connecting-the-xavier-to-the-pixhawk-4">7. Connecting the Xavier to the PIXHAWK 4</h3>
+
+<p>In order connect the  Xavier with the PIXHAWK4, a UART is needed. A telem2 is typically used for this purpose.  Therefore, an additional cable is used.</p>
+
+<p>On the Xavier, the ports are as follows:</p>
+
+<p>Jetson Xavier GPIO Pin 6 (GND) → Cable GND (Black Wire)
+Jetson Xavier GPIO Pin 8 (UART1_TX) → Cable RXD (White Wire)
+Jetson Xavier GPIO Pin 10 (UART1-RX) → Cable TXD (Green Wire)</p>
+
+<p><img src="/img/in-post/xmaxx-uart.jpg" alt="" /></p>
+
+:ET

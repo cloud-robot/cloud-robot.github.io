@@ -10,7 +10,7 @@
     <meta name="keywords"  content="Robot">
     <meta name="theme-color" content="#000000">
     
-    <title>ERDOS - cloud robot</title>
+    <title>Pixhawk 4 rover hardware - cloud robot</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://cloud-robot.github.io/2021/03/25/pylot-erdos/">
+    <link rel="canonical" href="https://cloud-robot.github.io/2021/11/21/pix4-xmaxx-hw/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,15 +155,22 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-digital-native.jpg" width="0" height="0"> -->
+<!-- <img src="/img/in-post/post-eleme-pwa/eleme-at-io.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/post-bg-digital-native.jpg')
+        background-image: url('/img/in-post/post-eleme-pwa/eleme-at-io.jpg')
     }
 
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
     
 </style>
 <header class="intro-header" >
@@ -176,21 +183,15 @@
                         
                         <a class="tag" href="/tags/#Robot" title="Robot">Robot</a>
                         
-                        <a class="tag" href="/tags/#Deep learning" title="Deep learning">Deep learning</a>
-                        
                         <a class="tag" href="/tags/#Self-driving" title="Self-driving">Self-driving</a>
                         
-                        <a class="tag" href="/tags/#Rust" title="Rust">Rust</a>
-                        
-                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
                     </div>
-                    <h1>ERDOS</h1>
+                    <h1>Pixhawk 4 rover hardware</h1>
                     
                     
-                    <h2 class="subheading">Code analysis and run in Ubuntu PC</h2>
+                    <h2 class="subheading">Xmaxx assembly with Pixhawk 4 and Xavier</h2>
                     
-                    <span class="meta">Posted by bobd988 on March 25, 2021</span>
+                    <span class="meta">Posted by gary ding on November 21, 2021</span>
                 </div>
             </div>
         </div>
@@ -209,12 +210,111 @@
                 post-container">
 
 				<blockquote>
-  <p>ERDOS is a platform for developing self-driving cars and robotics applications.</p>
+  <p>Steps to build PIXHAWK 4 rover based on a Traxxas X-Maxx RC truck with a Jetson Xavier as a Companion computer<br /><br /></p>
+
 </blockquote>
 
-<h2 id="erdos">ERDOS</h2>
+<h2 id="goals">Goals</h2>
+<p>To create a reference platform for the following:</p>
+<ul>
+  <li>Multi-camera verification</li>
+  <li>Data driven verification</li>
+  <li>Real world ML-Ops</li>
+  <li>A source for training data</li>
+</ul>
 
-<p>The system is built using techniques from streaming dataflow and applications are modeled as directed graphs, in which data flows through streams and is processed by operators.</p>
+<h2 id="parts-list">Parts List</h2>
+
+<ul>
+  <li>Traxxas X-Maxx RC Monster Truck</li>
+  <li>SparkFun FTDI Basic Breakout - 3.3V cable</li>
+  <li>Traxxas 6700 Battery and 12A EZ Plus charger (6700)</li>
+  <li>Nvidia Jetson Xavier development board</li>
+  <li>25000 PC portable battery with 19V output</li>
+  <li>Delkin Devices Fat Gecko mini suction camera mount for 4 camera kit</li>
+  <li>55 mm spacers/ standoffs</li>
+  <li>60 mm spacers/ standoffs</li>
+  <li>35 mm spacers/ standoffs</li>
+  <li>Acrylic Plexiglass Sheet 1/4” x 12” x 24”</li>
+  <li>M3 screws x 10 mm</li>
+  <li>M3 screws x 20 mm</li>
+  <li>PIXHAWK 4 kit</li>
+  <li>X8R receiver</li>
+  <li>Taranis QX7</li>
+  <li>e-CAM20_CUXVR - Four Synchronized 4K Cameras</li>
+  <li>Taranis X7 and X8R</li>
+</ul>
+
+<h3 id="1-modifying-the-truck">1. Modifying the Truck</h3>
+<p>The Traxxas X-Maxx is an affordable platform to carry heavy equipment, suitable for containing the other elements of the rover. <br />
+<img src="/img/in-post/xmaxx.jpg" alt="" /></p>
+
+<p>Two layers of Plexiglass are installed to hold the PIXHAWK 4, Xavier computer, and camera setup.</p>
+
+<p>The X-Maxx’s onboard ESC is kept but the actual control wire is rerouted from the original 2.4G receiver box to pins 1 and 3 on the PIXHAWK 4 power board IO port.</p>
+
+<h3 id="2-building-the-bottom-layer">2. Building the bottom layer</h3>
+
+<p>Standoffs are used to hold the PVC board to existing holes on the X-Maxx chassis. However, two holes in the front need to be newly created and threaded.</p>
+
+<p><img src="/img/in-post/xmaxx-body-drill.jpg" alt="" /></p>
+
+<h3 id="3-building-the-top-layer">3. Building the top layer</h3>
+
+<p>The second platform is created to hold the camera setup and also to protect the PIXHAWK 4 and computer. The image below depicts the finished assembly.</p>
+
+<p><img src="/img/in-post/xmaxx-body.jpg" alt="" /></p>
+
+<h3 id="4-wiring-the-motors">4. Wiring the motors</h3>
+
+<p>This is the standard wire diagram for accessories to be connected to the PIXHAWK 4.</p>
+
+<p><img src="/img/in-post/pixhawk4.jpg" alt="" /></p>
+
+<p>A standard wiring diagram for this rover is as follows.</p>
+
+<p><img src="/img/in-post/pix4-wire.png" alt="" /></p>
+
+<p>Since the X-Maxx requires a high voltage that is provided by  two batteries, the wires needs to be redesigned to accomodate the PM07 power board.</p>
+
+<p><img src="/img/in-post/xmaxx-wire.png" alt="" /></p>
+
+<p>The PM07 board to connect ESC actual wiring is like this. The connector is trx female connector.</p>
+
+<p><img src="/img/in-post/xmaxx-pm07.jpg" alt="" /></p>
+
+<p>The wiring that connects the PM07 board to the battery is as follows. The connector shown in the image is a trx male connector.</p>
+
+<p><img src="/img/in-post/xmaxx-battery.jpg" alt="" /></p>
+
+<p>The X-Maxx setup after completion:</p>
+
+<p><img src="/img/in-post/xmaxx-complete.jpg" alt="" /></p>
+
+<h3 id="5-wiring-the-xavier">5. Wiring the Xavier</h3>
+
+<p>The battery used for the Xavier is a Krionia 25000mAH battery which can output a voltage of 19V.
+A power cable connects the electrical output of the battery directly to the Xavier.</p>
+
+<h3 id="6-wiring-the-ecs-and-steering-cables">6. Wiring the ECS and steering cables</h3>
+
+<p>The X-Maxx’s ESC and steering cables can be found inside the carrier box.</p>
+
+<p><img src="/img/in-post/xmaxx-esc-cable.jpg" alt="" /></p>
+
+<p>The cable on the left is the ESC and the cable on the right is the steering cable. These two cables are rerouted from the receiver to GPIO pins 1 and 3 on the PM07.</p>
+
+<h3 id="7-connecting-the-xavier-to-the-pixhawk-4">7. Connecting the Xavier to the PIXHAWK 4</h3>
+
+<p>In order connect the  Xavier with the PIXHAWK4, a UART is needed. A telem2 is typically used for this purpose.  Therefore, an additional cable is used.</p>
+
+<p>On the Xavier, the ports are as follows:</p>
+
+<p>Jetson Xavier GPIO Pin 6 (GND) → Cable GND (Black Wire)
+Jetson Xavier GPIO Pin 8 (UART1_TX) → Cable RXD (White Wire)
+Jetson Xavier GPIO Pin 10 (UART1-RX) → Cable TXD (Green Wire)</p>
+
+<p><img src="/img/in-post/xmaxx-uart.jpg" alt="" /></p>
 
 
 
@@ -222,13 +322,13 @@
 
                 <ul class="pager">
                     
-                    
-                    <li class="next">
+                    <li class="previous">
                         <a href="/2021/11/12/pix4-xmaxx-sw/" data-toggle="tooltip" data-placement="top" title="pixhawk 4 rover software">
-                        Next<br>
+                        Previous<br>
                         <span>pixhawk 4 rover software</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
